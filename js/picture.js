@@ -13,7 +13,7 @@
       pictureElement.dataset.id = id;
       pictureElement.querySelector('.picture__img').src = pictureData.url;
       pictureElement.querySelector('.picture__comments').textContent = pictureData.comments.length;
-      pictureElement.querySelector('.picture__likes').textContent = pictureData.comments.likes;
+      pictureElement.querySelector('.picture__likes').textContent = pictureData.likes;
 
       return pictureElement;
     }
