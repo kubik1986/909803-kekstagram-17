@@ -210,12 +210,12 @@
 
   <!-- Сообщение с ошибкой загрузки изображения -->
   <template id="error">
-    <section class="error">
+    <section class="error" tabindex="0">
       <div class="error__inner">
         <h2 class="error__title">Ошибка загрузки файла</h2>
         <div class="error__buttons">
-          <button type="button" class="error__button">Попробовать снова</button>
-          <button type="button" class="error__button">Загрузить другой файл</button>
+          <button type="button" class="error__button error__button-try-again">Попробовать снова</button>
+          <button type="button" class="error__button error__button-load-file">Загрузить другой файл</button>
         </div>
       </div>
     </section>
@@ -223,7 +223,7 @@
 
   <!-- Сообщение об успешной загрузке изображения -->
   <template id="success">
-    <section class="success">
+    <section class="success" tabindex="0">
       <div class="success__inner">
         <h2 class="success__title">Изображение успешно загружено</h2>
         <button type="button" class="success__button">Круто!</button>
@@ -235,6 +235,16 @@
   <template id="messages">
     <div class="img-upload__message  img-upload__message--loading">Загружаем...</div>
   </template>
+
+  <!-- Скрипты -->
+  <script src="js/utils.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/backend.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/filter-form.js"></script>
+  <script src="js/picture.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/main.js"></script>
 
 </body>
 </html>
