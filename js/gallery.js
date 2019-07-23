@@ -5,8 +5,10 @@
   var picturesContainer = document.querySelector('.pictures.container');
   var pictures = [];
 
-  // TODO
-  var onPictureClick = function () {};
+  var onPictureClick = function (evt) {
+    evt.preventDefault();
+    window.preview.show(evt.currentTarget.dataset.id);
+  };
 
   window.gallery = {
     renderPictures: function (picturesData) {
