@@ -4,6 +4,7 @@
 
   var onPicturesLoad = function (picturesData) {
     window.data.pictures = picturesData;
+    window.data.filteredPictures = picturesData;
     window.filterForm.activate();
     window.gallery.renderPictures(window.data.pictures);
   };
@@ -16,6 +17,7 @@
 
   var initPage = function () {
     window.filterForm.deactivate();
+    window.filterForm.init();
     window.backend.load(onPicturesLoad, onPicturesError);
   };
 

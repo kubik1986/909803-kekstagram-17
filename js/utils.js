@@ -13,14 +13,16 @@
 
   window.utils = {
     shuffleArray: function (array) {
-      for (var i = array.length - 1; i > 0; i--) {
+      var arr = array.slice();
+
+      for (var i = arr.length - 1; i > 0; i--) {
         var j = Math.floor(Math.random() * (i + 1));
-        var temp = array[j];
-        array[j] = array[i];
-        array[i] = temp;
+        var temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
       }
 
-      return array;
+      return arr;
     },
 
     onEscPress: function (evt, cb) {

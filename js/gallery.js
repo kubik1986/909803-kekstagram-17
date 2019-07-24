@@ -10,6 +10,13 @@
     window.fullscreenView.show(evt.currentTarget.dataset.id);
   };
 
+  var removePictures = function () {
+    pictures.forEach(function (picture) {
+      picture.remove();
+    });
+    pictures = [];
+  };
+
   window.gallery = {
     renderPictures: function (picturesData) {
       var fragment = document.createDocumentFragment();
@@ -23,6 +30,11 @@
         pictureElement.addEventListener('click', onPictureClick);
       });
       picturesContainer.appendChild(fragment);
+    },
+
+    updatePictures: function (picturesData) {
+      removePictures();
+      this.renderPictures(picturesData);
     }
   };
 

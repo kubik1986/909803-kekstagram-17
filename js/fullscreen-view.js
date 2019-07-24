@@ -77,7 +77,7 @@
 
   window.fullscreenView = {
     show: function (pictureID) {
-      pictureData = window.data.pictures[pictureID];
+      pictureData = window.data.filteredPictures[pictureID];
 
       visibleCommentsAmount = 0;
       if (commentsLoadBtn.classList.contains('hidden')) {
