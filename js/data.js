@@ -2,7 +2,7 @@
 
 (function () {
 
-  var NEW_PICTURES_AMOUNT = 10;
+  var NEW_PICTURES_AMOUNT = 12;
 
   var FilterID = {
     POPULAR: 'filter-popular',
