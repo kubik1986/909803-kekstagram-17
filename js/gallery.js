@@ -7,7 +7,7 @@
 
   var onPictureClick = function (evt) {
     evt.preventDefault();
-    window.preview.show(evt.currentTarget.dataset.id);
+    window.fullscreenView.show(evt.currentTarget.dataset.id);
   };
 
   window.gallery = {

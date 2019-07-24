@@ -75,7 +75,7 @@
     window.utils.onEscPress(evt, hide);
   };
 
-  window.preview = {
+  window.fullscreenView = {
     show: function (pictureID) {
       pictureData = window.data.pictures[pictureID];
 
