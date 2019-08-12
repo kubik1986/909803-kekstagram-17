@@ -113,6 +113,10 @@
       }
     },
 
+    _setAcceptAttr: function () {
+      this._fileChooser.accept = 'image/*';
+    },
+
     _init: function () {
       var self = this;
 
@@ -135,6 +139,7 @@
         });
       });
 
+      self._setAcceptAttr();
       self._dropZone.addEventListener('drop', self._onDrop.bind(self));
       self._fileChooser.addEventListener('change', self._onInputChange.bind(self));
     },
