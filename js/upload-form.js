@@ -7,10 +7,31 @@
   var body = document.querySelector('body');
   var form = document.querySelector('.img-upload__form');
   var overlay = form.querySelector('.img-upload__overlay');
+  var closeButton = overlay.querySelector('#upload-cancel');
 
-  var showForm = function () {
+  var show = function () {
     body.classList.add('modal-open');
     overlay.classList.remove('hidden');
+
+    closeButton.addEventListener('click', onCloseBtnClick);
+    document.addEventListener('keydown', onPreviewEscPress);
+  };
+
+  var hide = function () {
+    overlay.classList.add('hidden');
+    body.classList.remove('modal-open');
+    photoLoader.reset();
+
+    closeButton.removeEventListener('click', onCloseBtnClick);
+    document.removeEventListener('keydown', onPreviewEscPress);
+  };
+
+  var onCloseBtnClick = function () {
+    hide();
+  };
+
+  var onPreviewEscPress = function (evt) {
+    window.utils.onEscPress(evt, hide);
   };
 
   var photoLoader = new window.ImageLoader({
@@ -21,7 +42,7 @@
     fileTypes: PHOTO_FILE_TYPES,
     maxFileSize: 2048, // KB
     defaultImg: 'img/upload-default-image.jpg',
-    onFileLoaded: showForm
+    onFileLoaded: show
   });
 
 })();
