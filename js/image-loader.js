@@ -40,9 +40,7 @@
       var self = this;
 
       window.alerts.showError(message,
-          function () {
-
-          },
+          null,
           function () {
             self._fileChooser.click();
           }

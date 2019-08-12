@@ -10,9 +10,11 @@
   };
 
   var onPicturesError = function (errorText) {
-    window.alerts.showError('Не удалось загрузить изображения других пользователей.<br>' + errorText, function () {
-      window.backend.load(onPicturesLoad, onPicturesError);
-    });
+    window.alerts.showError('Не удалось загрузить изображения других пользователей.<br>' + errorText,
+        function () {
+          window.backend.load(onPicturesLoad, onPicturesError);
+        },
+        null);
   };
 
   var initPage = function () {

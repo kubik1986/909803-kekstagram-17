@@ -53,11 +53,16 @@
       main.appendChild(errorElement);
       errorElement.focus();
 
-      tryAgainBtn.addEventListener('click', onTryAgainBtnClick);
       errorElement.addEventListener('click', onErrorClick);
       document.addEventListener('keydown', onAlertEscPress);
 
-      if (loadFileCallback === undefined) {
+      if (tryAgainCallback === null) {
+        tryAgainBtn.remove();
+      } else {
+        tryAgainBtn.addEventListener('click', onTryAgainBtnClick);
+      }
+
+      if (loadFileCallback === null) {
         loadFileBtn.remove();
       } else {
         loadFileBtn.addEventListener('click', onLoadFileBtnClick);
