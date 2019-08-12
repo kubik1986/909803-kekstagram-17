@@ -79,10 +79,10 @@
       this._errors = [];
     },
 
-    _updatePreview: function (files) {
+    _updatePreview: function () {
       var self = this;
 
-      if (files.length > 0) {
+      if (self._files.length > 0) {
         var reader = new FileReader();
 
         reader.addEventListener('load', function () {
@@ -90,9 +90,7 @@
           self._onFileLoaded();
         });
 
-        reader.readAsDataURL(files[0]);
-      } else {
-        self._setDefaultPreview();
+        reader.readAsDataURL(self._files[0]);
       }
     },
 
@@ -101,8 +99,7 @@
     },
 
     _addFiles: function (files) {
-      this._clearFiles();
-      this._clearErrors();
+      this.reset();
 
       if (files[0] && this._validate(files[0])) {
         this._files.push(files[0]);
@@ -147,18 +144,19 @@
       var files = Array.from(dataTransfer.files);
 
       this._addFiles(files);
-      this._updatePreview(this._files);
+      this._updatePreview();
     },
 
     _onInputChange: function () {
       var files = Array.from(this._fileChooser.files);
 
       this._addFiles(files);
-      this._updatePreview(this._files);
+      this._updatePreview();
     },
 
     reset: function () {
       this._clearFiles();
+      this._fileChooser.value = '';
       this._clearErrors();
       this._setDefaultPreview();
     },
