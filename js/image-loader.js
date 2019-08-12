@@ -50,7 +50,7 @@
     _validate: function (file) {
       var isCorrect = false;
       var typeError = 'Допустимые типы файлов - ' + this._fileTypes.join(', ');
-      var sizeError = 'Максимальный размер файла - ' + this._maxFileSize + ' КБ';
+      var sizeError = 'Максимальный размер файла - ' + this._maxFileSize + '&nbsp;КБ';
       var fileName = file.name.toLowerCase();
       var matches = this._fileTypes.some(function (type) {
         return fileName.endsWith(type);
