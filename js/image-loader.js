@@ -20,7 +20,7 @@
     this._errors = []; // массив сообщений об ошибках
     this._onFileLoaded = obj.onFileLoaded; // cb, вызываемый после загрузки файла
 
-    this._init.call(this);
+    this._init();
   };
 
   window.ImageLoader.prototype = {
