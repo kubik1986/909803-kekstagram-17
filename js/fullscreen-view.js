@@ -44,6 +44,10 @@
     });
 
     commentsList.appendChild(fragment);
+
+    if (visibleCommentsAmount === commentsAmount) {
+      commentsLoadBtn.classList.add('hidden');
+    }
   };
 
   var updateCommentsCount = function () {
@@ -61,9 +65,6 @@
 
   var onCommentsLoadBtnClick = function () {
     renderComments(pictureData);
-    if (visibleCommentsAmount === commentsAmount) {
-      commentsLoadBtn.classList.add('hidden');
-    }
     updateCommentsCount();
   };
 
@@ -93,9 +94,6 @@
 
       if (commentsAmount > 0) {
         renderComments(pictureData);
-        if (visibleCommentsAmount === commentsAmount) {
-          commentsLoadBtn.classList.add('hidden');
-        }
       } else {
         commentsLoadBtn.classList.add('hidden');
       }
