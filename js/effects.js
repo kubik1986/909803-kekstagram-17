@@ -80,6 +80,9 @@
     },
 
     applyEffect: function (effectLevel) {
+      if (!effectFunctions.hasOwnProperty(this._currentEffect)) {
+        throw new Error('Функция для эффекта "' + this._currentEffect + '" не найдена');
+      }
       this._preview.style.filter = effectFunctions[this._currentEffect](effectLevel);
     },
 
