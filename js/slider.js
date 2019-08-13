@@ -23,9 +23,7 @@
   };
 
   window.Slider.prototype = {
-    _moveGrip: function (value) {
-      var gripPosition = Math.round((value - this._minValue) / (this._maxValue - this._minValue) * 100 * 100) / 100;
-
+    _moveGrip: function (gripPosition) {
       this._grip.style.left = gripPosition + '%';
       this._valueLine.style.width = gripPosition + '%';
       this._gripPosition = gripPosition;
@@ -37,9 +35,7 @@
     },
 
     _updateValue: function (gripPosition) { // gripPosition в %
-      this._gripPosition = gripPosition;
-      this._grip.style.left = gripPosition + '%';
-      this._valueLine.style.width = gripPosition + '%';
+      this._moveGrip(gripPosition);
 
       var value = Math.round(gripPosition / 100 * (this._maxValue - this._minValue) + this._minValue);
       this._value = value;
@@ -97,7 +93,9 @@
       if (!isNaN(value) && value >= this._minValue && value <= this._maxValue) {
         this._value = Math.round(value);
         this._input.value = this._value;
-        this._moveGrip(this._value);
+
+        var gripPosition = Math.round((this._value - this._minValue) / (this._maxValue - this._minValue) * 100 * 100) / 100;
+        this._moveGrip(gripPosition);
       }
     },
 
