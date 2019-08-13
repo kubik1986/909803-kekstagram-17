@@ -13,7 +13,7 @@
     this._valueLine = obj.valueLine; // линия текущего значения
     this._grip = obj.grip; // ручка слайдера
     this._input = obj.input; // поле текущего значения
-    this._cb = obj.cb; // callback, выполняемый при перемещении ручки слайдера
+    this._cb = obj.cb; // callback, выполняемый при изменении значения
     this._minValue = obj.minValue; // минимальное значение
     this._maxValue = obj.maxValue; // максимальное значение
     this._value = this._input.value; // текущее значение слайдера
@@ -40,6 +40,7 @@
       var value = Math.round(gripPosition / 100 * (this._maxValue - this._minValue) + this._minValue);
       this._value = value;
       this._input.value = value;
+      this._cb();
     },
 
     _onGripMousedown: function (evt) {
@@ -74,7 +75,6 @@
         }
 
         self._updateValue(left);
-        self._cb();
       };
 
       var onMouseUp = function (upEvt) {
@@ -96,6 +96,7 @@
 
         var gripPosition = Math.round((this._value - this._minValue) / (this._maxValue - this._minValue) * 100 * 100) / 100;
         this._moveGrip(gripPosition);
+        this._cb();
       }
     },
 
