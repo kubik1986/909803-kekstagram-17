@@ -21,6 +21,7 @@
     overlay.classList.add('hidden');
     body.classList.remove('modal-open');
     photoLoader.reset();
+    effects.reset();
 
     closeButton.removeEventListener('click', onCloseBtnClick);
     document.removeEventListener('keydown', onPreviewEscPress);
@@ -45,17 +46,8 @@
     onFileLoaded: show
   });
 
-  var effectSlider = new window.Slider({
-    sliderElement: form.querySelector('.effect-level'),
-    scale: form.querySelector('.effect-level__line'),
-    valueLine: form.querySelector('.effect-level__depth'),
-    grip: form.querySelector('.effect-level__pin'),
-    input: form.querySelector('.effect-level__value'),
-    minValue: 0,
-    maxValue: 100,
-    cb: function () {}
-  });
-
-  window.effectSlider = effectSlider;
+  var effects = new window.Effects(form.querySelector('.effects'),
+      form.querySelector('.img-upload__preview'),
+      form.querySelector('.effect-level'));
 
 })();

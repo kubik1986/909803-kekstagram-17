@@ -40,7 +40,7 @@
       var value = Math.round(gripPosition / 100 * (this._maxValue - this._minValue) + this._minValue);
       this._value = value;
       this._input.value = value;
-      this._cb();
+      this._cb(this._value);
     },
 
     _onGripMousedown: function (evt) {
@@ -96,7 +96,7 @@
 
         var gripPosition = Math.round((this._value - this._minValue) / (this._maxValue - this._minValue) * 100 * 100) / 100;
         this._moveGrip(gripPosition);
-        this._cb();
+        this._cb(this._value);
       }
     },
 
@@ -109,11 +109,11 @@
     },
 
     hide: function () {
-      this._element.style.display = 'none';
+      this._element.classList.add('hidden');
     },
 
     show: function () {
-      this._element.style.display = '';
+      this._element.classList.remove('hidden');
     }
   };
 
