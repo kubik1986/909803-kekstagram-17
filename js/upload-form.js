@@ -45,4 +45,17 @@
     onFileLoaded: show
   });
 
+  var effectSlider = new window.Slider({
+    sliderElement: form.querySelector('.effect-level'),
+    scale: form.querySelector('.effect-level__line'),
+    valueLine: form.querySelector('.effect-level__depth'),
+    grip: form.querySelector('.effect-level__pin'),
+    input: form.querySelector('.effect-level__value'),
+    minValue: 0,
+    maxValue: 100,
+    cb: function () {}
+  });
+
+  window.effectSlider = effectSlider;
+
 })();
