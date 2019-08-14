@@ -23,12 +23,12 @@
     }
   };
 
-  window.Effects = function (element, preview, sliderElement) {
-    this._element = element;
-    this._radios = this._element.querySelectorAll('.effects__radio');
-    this._currentEffect = 'none';
-    this._preview = preview;
-    this.slider = new window.Slider({
+  window.Effects = function (effectsElement, preview, sliderElement) {
+    this._element = effectsElement; // контейнер блока эффектов
+    this._radios = this._element.querySelectorAll('.effects__radio'); // радио-кнопки эффектов
+    this._currentEffect = 'none'; // текущий эффект
+    this._preview = preview; // контейнер превью
+    this.slider = new window.Slider({ // контроллер уровня эффекта
       sliderElement: sliderElement,
       scale: sliderElement.querySelector('.effect-level__line'),
       valueLine: sliderElement.querySelector('.effect-level__depth'),
