@@ -8,11 +8,13 @@
   var form = document.querySelector('.img-upload__form');
   var overlay = form.querySelector('.img-upload__overlay');
   var closeButton = overlay.querySelector('#upload-cancel');
+  var preview = form.querySelector('.img-upload__preview');
 
   var show = function () {
     body.classList.add('modal-open');
     overlay.classList.remove('hidden');
 
+    imageScale.reset();
     closeButton.addEventListener('click', onCloseBtnClick);
     document.addEventListener('keydown', onPreviewEscPress);
   };
@@ -38,12 +40,20 @@
   var photoLoader = new window.ImageLoader({
     fileChooser: form.querySelector('#upload-file'),
     dropZone: form.querySelector('.img-upload__control'),
-    preview: form.querySelector('.img-upload__preview'),
+    preview: preview,
     highlightClass: 'img-upload__control--highlighted',
     fileTypes: PHOTO_FILE_TYPES,
     maxFileSize: 2048, // KB
     defaultImg: 'img/upload-default-image.jpg',
     onFileLoaded: show
+  });
+
+  var imageScale = new window.ImageScale({
+    element: form.querySelector('.img-upload__scale'),
+    minValue: 25,
+    maxValue: 100,
+    step: 25,
+    preview: preview
   });
 
   var effects = new window.Effects(form.querySelector('.effects'),
