@@ -36,6 +36,7 @@
       input: sliderElement.querySelector('.effect-level__value'),
       minValue: 0,
       maxValue: 100,
+      valueStepByKeyPressMultiplier: 0.01,
       cb: this.applyEffect.bind(this)
     });
 

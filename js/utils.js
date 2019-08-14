@@ -6,12 +6,16 @@
 
   var KeyCode = {
     ESC: 27,
-    ENTER: 13
+    ENTER: 13,
+    LEFT_ARROW: 37,
+    RIGHT_ARROW: 39
   };
 
   var lastTimeout;
 
   window.utils = {
+    KeyCode: KeyCode,
+
     shuffleArray: function (array) {
       var arr = array.slice();
 

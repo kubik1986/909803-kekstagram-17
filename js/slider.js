@@ -17,7 +17,8 @@
     this._minValue = obj.minValue; // минимальное значение
     this._maxValue = obj.maxValue; // максимальное значение
     this._value = this._input.value; // текущее значение слайдера
-    this._gripPosition = parseInt(getComputedStyle(this._grip).left, 10);
+    this._gripPosition = parseInt(getComputedStyle(this._grip).left, 10); // координата left ручки слайдера в %
+    this._valueStepByKeyPress = obj.valueStepByKeyPressMultiplier * (this._maxValue - this._minValue); // шаг изменения значения слайдера при нажатии стрелок (на основе множителя к шкале значений)
 
     this._init();
   };
@@ -32,6 +33,7 @@
     _init: function () {
       this.reset();
       this._grip.addEventListener('mousedown', this._onGripMousedown.bind(this));
+      this._grip.addEventListener('keydown', this._onGripKeyDown.bind(this));
     },
 
     _updateValue: function (gripPosition) { // gripPosition в %
@@ -87,10 +89,26 @@
       document.addEventListener('mouseup', onMouseUp);
     },
 
+    _onGripKeyDown: function (evt) {
+      var self = this;
+
+      if (evt.keyCode === window.utils.KeyCode.RIGHT_ARROW) {
+        self.setValue(self._value + self._valueStepByKeyPress);
+      } else if (evt.keyCode === window.utils.KeyCode.LEFT_ARROW) {
+        self.setValue(self._value - self._valueStepByKeyPress);
+      }
+    },
+
     setValue: function (value) {
       value = parseInt(value, 10);
 
-      if (!isNaN(value) && value >= this._minValue && value <= this._maxValue) {
+      if (!isNaN(value)) {
+        if (value < this._minValue) {
+          value = this._minValue;
+        } else if (value > this._maxValue) {
+          value = this._maxValue;
+        }
+
         this._value = Math.round(value);
         this._input.value = this._value;
 
