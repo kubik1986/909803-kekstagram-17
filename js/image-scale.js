@@ -11,7 +11,7 @@
     this._maxValue = parseInt(obj.maxValue, 10); // максимальное значение масштаба, в %
     this._step = parseInt(obj.step, 10); // шаг изменения масштаба, в %
     this._value = parseInt(this._input.value, 10); // текущее значение масштаба
-    this._previewImg = obj.preview.querySelector('img'); // изображение превью
+    this._previewImg = obj.previewImg; // изображение превью
 
     this._init();
   };

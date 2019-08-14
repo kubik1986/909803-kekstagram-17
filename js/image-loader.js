@@ -11,8 +11,7 @@
     this._fileChooser = obj.fileChooser; // инпут
     this._dropZone = obj.dropZone; // drop zone
     this._highlightClass = obj.highlightClass; // класс drop zone при dragenter и dragover
-    this._preview = obj.preview; // контейнер превью
-    this._previewImg = obj.preview.querySelector('img');
+    this._previewImg = obj.previewImg; // изображение превью
     this._defaultImg = obj.defaultImg; // адрес изображения по умолчанию
     this._fileTypes = obj.fileTypes; // допустимые типы файлов
     this._maxFileSize = obj.maxFileSize; // максимальный размер файла в KB

@@ -8,7 +8,7 @@
   var form = document.querySelector('.img-upload__form');
   var overlay = form.querySelector('.img-upload__overlay');
   var closeButton = overlay.querySelector('#upload-cancel');
-  var preview = form.querySelector('.img-upload__preview');
+  var previewImg = form.querySelector('.img-upload__preview img');
 
   var show = function () {
     body.classList.add('modal-open');
@@ -40,7 +40,7 @@
   var photoLoader = new window.ImageLoader({
     fileChooser: form.querySelector('#upload-file'),
     dropZone: form.querySelector('.img-upload__control'),
-    preview: preview,
+    previewImg: previewImg,
     highlightClass: 'img-upload__control--highlighted',
     fileTypes: PHOTO_FILE_TYPES,
     maxFileSize: 2048, // KB
@@ -53,11 +53,11 @@
     minValue: 25,
     maxValue: 100,
     step: 25,
-    preview: preview
+    previewImg: previewImg
   });
 
   var effects = new window.Effects(form.querySelector('.effects'),
-      form.querySelector('.img-upload__preview'),
+      previewImg,
       form.querySelector('.effect-level'));
 
 })();

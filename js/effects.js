@@ -23,11 +23,11 @@
     }
   };
 
-  window.Effects = function (effectsElement, preview, sliderElement) {
+  window.Effects = function (effectsElement, previewImg, sliderElement) {
     this._element = effectsElement; // контейнер блока эффектов
     this._radios = this._element.querySelectorAll('.effects__radio'); // радио-кнопки эффектов
     this._currentEffect = 'none'; // текущий эффект
-    this._preview = preview; // контейнер превью
+    this._previewImg = previewImg; // изображение превью
     this.slider = new window.Slider({ // контроллер уровня эффекта
       sliderElement: sliderElement,
       scale: sliderElement.querySelector('.effect-level__line'),
@@ -53,9 +53,13 @@
       });
     },
 
-    _clearPreviewClass: function () {
-      if (this._preview.classList.contains('effects__preview--' + this._currentEffect)) {
-        this._preview.classList.remove('effects__preview--' + this._currentEffect);
+    _clearPreviewImgClass: function () {
+      if (this._previewImg.classList.contains('effects__preview--' + this._currentEffect)) {
+        this._previewImg.classList.remove('effects__preview--' + this._currentEffect);
+      }
+
+      if (this._previewImg.classList.length === 0) {
+        this._previewImg.removeAttribute('class');
       }
     },
 
@@ -69,10 +73,10 @@
           this.slider.hide();
         }
 
-        this._clearPreviewClass();
+        this._clearPreviewImgClass();
 
         if (effect !== 'none') {
-          this._preview.classList.add('effects__preview--' + effect);
+          this._previewImg.classList.add('effects__preview--' + effect);
         }
 
         this._currentEffect = effect;
@@ -84,11 +88,11 @@
       if (!effectFunctions.hasOwnProperty(this._currentEffect)) {
         throw new Error('Функция для эффекта "' + this._currentEffect + '" не найдена');
       }
-      this._preview.style.filter = effectFunctions[this._currentEffect](effectLevel);
+      this._previewImg.style.filter = effectFunctions[this._currentEffect](effectLevel);
     },
 
     reset: function () {
-      this._clearPreviewClass();
+      this._clearPreviewImgClass();
       this._element.querySelector('#effect-none').checked = true;
       this._currentEffect = 'none';
       this.slider.hide();
