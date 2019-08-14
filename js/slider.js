@@ -90,12 +90,10 @@
     },
 
     _onGripKeyDown: function (evt) {
-      var self = this;
-
       if (evt.keyCode === window.utils.KeyCode.RIGHT_ARROW) {
-        self.setValue(self._value + self._valueStepByKeyPress);
+        this.setValue(this._value + this._valueStepByKeyPress);
       } else if (evt.keyCode === window.utils.KeyCode.LEFT_ARROW) {
-        self.setValue(self._value - self._valueStepByKeyPress);
+        this.setValue(this._value - this._valueStepByKeyPress);
       }
     },
 
