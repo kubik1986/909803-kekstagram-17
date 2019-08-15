@@ -428,6 +428,10 @@ main {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+.img-upload__overlay:focus {
+  outline: none;
+}
+
 .img-upload__preview-container {
   position: relative;
   margin-bottom: 30px;
@@ -839,6 +843,10 @@ main {
 
 /* Окно полноэкранного просмотра изображения
    ========================================================================== */
+
+.big-picture:focus {
+  outline: none;
+}
 
 .big-picture__preview {
   position: absolute;
@@ -1293,6 +1301,11 @@ main {
   z-index: 1;
 
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.error:focus,
+.success:focus {
+  outline: none;
 }
 
 .error__inner,
