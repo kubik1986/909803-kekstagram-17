@@ -222,6 +222,7 @@ main {
 }
 
 .picture__img {
+  display: block;
   max-width: auto;
   width: 100%;
   height: auto;
@@ -924,6 +925,7 @@ main {
   padding-left: 30px;
 
   color: #f48181;
+  text-decoration: none;
 
   cursor: pointer;
 }

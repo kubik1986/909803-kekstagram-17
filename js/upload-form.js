@@ -2,17 +2,30 @@
 
 (function () {
 
-  var PHOTO_FILE_TYPES = ['jpg', 'jpeg', 'png'];
+  var PhotoLoader = {
+    FILE_TYPES: ['jpg', 'jpeg', 'png'],
+    MAX_FILE_SIZE: 2048 // KB
+  };
+
+  var ImageScale = {
+    MIN_VALUE: 25,
+    MAX_VALUE: 100,
+    STEP: 25
+  };
 
   var body = document.querySelector('body');
   var form = document.querySelector('.img-upload__form');
   var overlay = form.querySelector('.img-upload__overlay');
   var closeButton = overlay.querySelector('#upload-cancel');
   var previewImg = form.querySelector('.img-upload__preview img');
+  var photoLoader;
+  var imageScale;
+  var effects;
 
   var show = function () {
     body.classList.add('modal-open');
     overlay.classList.remove('hidden');
+    overlay.focus();
 
     imageScale.reset();
     closeButton.addEventListener('click', onCloseBtnClick);
@@ -37,27 +50,31 @@
     window.utils.onEscPress(evt, hide);
   };
 
-  var photoLoader = new window.ImageLoader({
-    fileChooser: form.querySelector('#upload-file'),
-    dropZone: form.querySelector('.img-upload__control'),
-    previewImg: previewImg,
-    highlightClass: 'img-upload__control--highlighted',
-    fileTypes: PHOTO_FILE_TYPES,
-    maxFileSize: 2048, // KB
-    defaultImg: 'img/upload-default-image.jpg',
-    onFileLoaded: show
-  });
+  window.uploadForm = {
+    init: function () {
+      photoLoader = new window.ImageLoader({
+        fileChooser: form.querySelector('#upload-file'),
+        dropZone: form.querySelector('.img-upload__control'),
+        previewImg: previewImg,
+        highlightClass: 'img-upload__control--highlighted',
+        fileTypes: PhotoLoader.FILE_TYPES,
+        maxFileSize: PhotoLoader.MAX_FILE_SIZE,
+        defaultImg: 'img/upload-default-image.jpg',
+        onFileLoaded: show
+      });
 
-  var imageScale = new window.ImageScale({
-    element: form.querySelector('.img-upload__scale'),
-    minValue: 25,
-    maxValue: 100,
-    step: 25,
-    previewImg: previewImg
-  });
+      imageScale = new window.ImageScale({
+        element: form.querySelector('.img-upload__scale'),
+        minValue: ImageScale.MIN_VALUE,
+        maxValue: ImageScale.MAX_VALUE,
+        step: ImageScale.STEP,
+        previewImg: previewImg
+      });
 
-  var effects = new window.Effects(form.querySelector('.effects'),
-      previewImg,
-      form.querySelector('.effect-level'));
+      effects = new window.Effects(form.querySelector('.effects'),
+          previewImg,
+          form.querySelector('.effect-level'));
+    }
+  };
 
 })();

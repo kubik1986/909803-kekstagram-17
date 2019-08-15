@@ -2,6 +2,12 @@
 
 (function () {
 
+  var Slider = {
+    MIN_VALUE: 0,
+    MAX_VALUE: 100,
+    VALUE_STEP_BY_KEY_PRESS_MULTIPLIER: 0.01
+  };
+
   var effectFunctions = {
     'none': function () {
       return '';
@@ -34,9 +40,9 @@
       valueLine: sliderElement.querySelector('.effect-level__depth'),
       grip: sliderElement.querySelector('.effect-level__pin'),
       input: sliderElement.querySelector('.effect-level__value'),
-      minValue: 0,
-      maxValue: 100,
-      valueStepByKeyPressMultiplier: 0.01,
+      minValue: Slider.MIN_VALUE,
+      maxValue: Slider.MAX_VALUE,
+      valueStepByKeyPressMultiplier: Slider.VALUE_STEP_BY_KEY_PRESS_MULTIPLIER,
       cb: this.applyEffect.bind(this)
     });
 

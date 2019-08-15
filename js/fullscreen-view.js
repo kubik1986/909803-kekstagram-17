@@ -12,10 +12,13 @@
   var commentsList = container.querySelector('.social__comments');
   var commentsLoadBtn = container.querySelector('.social__comments-loader');
   var commentTemplate = commentsList.querySelector('.social__comment');
+  var leaveCommentForm = container.querySelector('.social__footer');
+  var leaveCommentInput = leaveCommentForm.querySelector('.social__footer-text');
   var closeButton = container.querySelector('#picture-cancel');
   var visibleCommentsAmount;
   var commentsAmount;
   var pictureData;
+  var lastFocusedElement;
 
   var clearComments = function () {
     commentsList.innerHTML = null;
@@ -57,6 +60,7 @@
   var hide = function () {
     container.classList.add('hidden');
     body.classList.remove('modal-open');
+    lastFocusedElement.focus();
 
     commentsLoadBtn.removeEventListener('click', onCommentsLoadBtnClick);
     closeButton.removeEventListener('click', onCloseBtnClick);
@@ -78,6 +82,7 @@
 
   window.fullscreenView = {
     show: function (pictureID) {
+      lastFocusedElement = document.activeElement;
       pictureData = window.data.filteredPictures[pictureID];
 
       visibleCommentsAmount = 0;
@@ -91,6 +96,7 @@
 
       commentsAmount = (!pictureData.hasOwnProperty('comments') || pictureData.comments.length === 0) ? 0 : pictureData.comments.length;
       clearComments();
+      leaveCommentInput.value = '';
 
       if (commentsAmount > 0) {
         renderComments(pictureData);
@@ -101,6 +107,8 @@
       updateCommentsCount();
       container.classList.remove('hidden');
       body.classList.add('modal-open');
+      container.focus();
+      container.scrollTo(0, 0);
 
       commentsLoadBtn.addEventListener('click', onCommentsLoadBtnClick);
       closeButton.addEventListener('click', onCloseBtnClick);

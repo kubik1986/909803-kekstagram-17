@@ -20,6 +20,7 @@
   var initPage = function () {
     window.filterForm.deactivate();
     window.filterForm.init();
+    window.uploadForm.init();
     window.backend.load(onPicturesLoad, onPicturesError);
   };
 
