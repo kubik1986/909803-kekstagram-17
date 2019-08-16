@@ -218,6 +218,8 @@ main {
 
 .picture {
   position: relative;
+
+  color: #ffffff;
   line-height: 0;
 }
 
@@ -386,7 +388,8 @@ main {
 }
 
 .img-upload__input:focus + .img-upload__label {
-  outline: auto 5px highlight;
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
 }
 
 .img-upload__control--highlighted::before {

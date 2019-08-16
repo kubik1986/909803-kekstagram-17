@@ -9,6 +9,7 @@
     this._increaseBtn = this._element.querySelector('.scale__control--bigger');
     this._minValue = parseInt(obj.minValue, 10); // минимальное значение масштаба, в %
     this._maxValue = parseInt(obj.maxValue, 10); // максимальное значение масштаба, в %
+    this._defaultValue = parseInt(obj.defaultValue, 10); // значение масштаба по умолчанию, в %
     this._step = parseInt(obj.step, 10); // шаг изменения масштаба, в %
     this._value = parseInt(this._input.value, 10); // текущее значение масштаба
     this._previewImg = obj.previewImg; // изображение превью
@@ -19,6 +20,7 @@
   window.ImageScale.prototype = {
     _init: function () {
       this.reset();
+      this._input.setAttribute('value', this._defaultValue + '%');
       this._element.addEventListener('click', this._onElementClick.bind(this));
     },
 
@@ -52,8 +54,7 @@
     },
 
     reset: function () {
-      this._input.value = '';
-      this.setValue(100);
+      this.setValue(this._defaultValue);
     }
   };
 

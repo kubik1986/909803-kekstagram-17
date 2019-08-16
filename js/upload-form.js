@@ -10,7 +10,8 @@
   var ImageScale = {
     MIN_VALUE: 25,
     MAX_VALUE: 100,
-    STEP: 25
+    STEP: 25,
+    DEFAULT_VALUE: 100
   };
 
   var body = document.querySelector('body');
@@ -27,7 +28,6 @@
     overlay.classList.remove('hidden');
     overlay.focus();
 
-    imageScale.reset();
     closeButton.addEventListener('click', onCloseBtnClick);
     document.addEventListener('keydown', onPreviewEscPress);
   };
@@ -36,6 +36,7 @@
     overlay.classList.add('hidden');
     body.classList.remove('modal-open');
     photoLoader.reset();
+    imageScale.reset();
     effects.reset();
 
     closeButton.removeEventListener('click', onCloseBtnClick);
@@ -68,6 +69,7 @@
         minValue: ImageScale.MIN_VALUE,
         maxValue: ImageScale.MAX_VALUE,
         step: ImageScale.STEP,
+        defaultValue: ImageScale.DEFAULT_VALUE,
         previewImg: previewImg
       });
 
