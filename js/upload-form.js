@@ -169,7 +169,7 @@
   };
 
   var onSubmitError = function (errorText) {
-    window.alerts.showError('Ошибка загрузки файла.<br>' + errorText, upload);
+    window.alerts.showError('Ошибка загрузки файла.<br>' + errorText, upload, null);
     submitBtn.disabled = false;
   };
 
