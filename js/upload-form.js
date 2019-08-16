@@ -62,7 +62,6 @@
     var value = hashtagsField.value.trim();
 
     if (value === '') {
-      hashtagsField.value = '';
       hashtagsField.setCustomValidity('');
       return true;
     }
@@ -112,6 +111,14 @@
     return true;
   };
 
+  var beautifyHashtags = function () {
+    var value = hashtagsField.value.trim();
+    if (value !== '') {
+      var hashtags = value.split(/\s+/);
+      hashtagsField.value = hashtags.join(' ');
+    }
+  };
+
   var setFormData = function () {
     var formData = new FormData();
 
@@ -131,6 +138,7 @@
 
   var upload = function () {
     submitBtn.disabled = true;
+    window.spinners.showLoadingMessage();
     window.backend.save(setFormData(), onSubmitSuccess, onSubmitError);
   };
 
@@ -163,12 +171,14 @@
   };
 
   var onSubmitSuccess = function () {
+    window.spinners.hideLoadingMessage();
     window.alerts.showSuccess('Изображение успешно загружено');
     hide();
     submitBtn.disabled = false;
   };
 
   var onSubmitError = function (errorText) {
+    window.spinners.hideLoadingMessage();
     window.alerts.showError('Ошибка загрузки файла.<br>' + errorText, upload, null);
     submitBtn.disabled = false;
   };
@@ -177,6 +187,7 @@
     var isValid = validateHahtags();
 
     if (isValid) {
+      beautifyHashtags();
       upload();
     }
   };

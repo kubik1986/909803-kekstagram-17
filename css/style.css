@@ -1267,15 +1267,15 @@ main {
    ========================================================================== */
 
 .img-upload__message {
-  position: absolute;
+  position: fixed;
   z-index: 2;
   left: 50%;
-  top: 0;
+  top: 50%;
 
-  padding-top: 250px;
+  padding-top: 25vh;
 
   width: 600px;
-  height: 100%;
+  height: 70vh;
 
   font-family: "Open Sans", "Arial", sans-serif;
   text-align: center;
@@ -1284,7 +1284,8 @@ main {
   color: #ffe753;
 
   background-color: #3c3614;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+
 }
 
 
@@ -1411,7 +1412,7 @@ main {
 .img-upload__message--loading::before {
   content: "";
   position: absolute;
-  bottom: 40%;
+  bottom: 25vh;
   left: 50%;
 
   width: 300px;
@@ -1427,7 +1428,7 @@ main {
 .img-upload__message--loading::after {
   content: "";
   position: absolute;
-  bottom: 40%;
+  bottom: 25vh;
   left: 50%;
 
   width: 200px;
@@ -1438,6 +1439,16 @@ main {
   -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
           transform: translateX(-50%);
+
+  animation: move-to-right 2s linear infinite;
+}
+
+@keyframes move-to-right {
+  0% { transform-origin: left; transform: translateX(-75%) scale(0, 1); }
+  25% { transform-origin: left; transform: translateX(-75%) scale(1, 1); }
+  50% { transform-origin: left; transform: translateX(-50%) scale(1, 1); }
+  75% { transform-origin: left; transform: translateX(-25%) scale(1, 1); }
+  100% { transform-origin: left; transform: translateX(75%) scale(0, 1); }
 }
 
 
